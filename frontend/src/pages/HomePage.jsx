@@ -23,6 +23,13 @@ export default function HomePage() {
             <p className="text-gray-500 text-sm">Search and filter job postings</p>
           </Link>
           <Link
+            to="/mentorships"
+            className="bg-white border-2 border-gray-200 hover:border-purple-400 rounded-xl p-6 text-center transition-all hover:shadow-lg"
+          >
+            <h2 className="text-lg font-semibold text-gray-900 mb-1">Browse Mentorships</h2>
+            <p className="text-gray-500 text-sm">Find mentor opportunities</p>
+          </Link>
+          <Link
             to="/students"
             className="bg-white border-2 border-gray-200 hover:border-green-400 rounded-xl p-6 text-center transition-all hover:shadow-lg"
           >

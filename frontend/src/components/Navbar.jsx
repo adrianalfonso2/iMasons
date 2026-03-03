@@ -20,6 +20,7 @@ export default function Navbar() {
           {isAuthenticated && (
             <div className="hidden md:flex items-center gap-4 text-sm">
               <Link to="/jobs" className="text-gray-600 hover:text-gray-900">Jobs</Link>
+              <Link to="/mentorships" className="text-gray-600 hover:text-gray-900">Mentorships</Link>
               <Link to="/students" className="text-gray-600 hover:text-gray-900">Students</Link>
               {isStudent && linkedProfileId && (
                 <>
@@ -31,6 +32,7 @@ export default function Navbar() {
                 <>
                   <Link to={`/employer/dashboard/${linkedProfileId}`} className="text-gray-600 hover:text-gray-900">Dashboard</Link>
                   <Link to="/jobs/new" className="text-gray-600 hover:text-gray-900">Post Job</Link>
+                  <Link to="/mentorships/new" className="text-gray-600 hover:text-gray-900">Post Mentorship</Link>
                 </>
               )}
               {isAdmin && (

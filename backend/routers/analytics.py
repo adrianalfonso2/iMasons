@@ -95,6 +95,7 @@ def get_employer_analytics(employer_id: int, db: Session = Depends(get_db)):
         breakdown.append({
             "postingId": pid,
             "title": posting.title,
+            "jobType": posting.jobType,
             "views": views,
             "emailClicks": clicks,
         })

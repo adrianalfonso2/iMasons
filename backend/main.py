@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database import engine, Base
-from routers import students, employers, jobPostings, savedPostings, analytics
+from routers import students, employers, jobPostings, savedPostings, analytics, mentorships
 from routers import auth as auth_router
 from routers import admin as admin_router
 
@@ -26,6 +26,7 @@ app.add_middleware(
 app.include_router(students.router)
 app.include_router(employers.router)
 app.include_router(jobPostings.router)
+app.include_router(mentorships.router)
 app.include_router(savedPostings.router)
 app.include_router(analytics.router)
 

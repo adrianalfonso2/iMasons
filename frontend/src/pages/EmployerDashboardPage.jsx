@@ -160,7 +160,7 @@ export default function EmployerDashboardPage() {
                 {analytics.postingBreakdown.map((item) => (
                   <tr key={item.postingId}>
                     <td className="px-4 py-3">
-                      <Link to={`/jobs/${item.postingId}`} className="text-blue-600 hover:text-blue-800">
+                      <Link to={item.jobType === 'mentorship' ? `/mentorships/${item.postingId}` : `/jobs/${item.postingId}`} className="text-blue-600 hover:text-blue-800">
                         {item.title}
                       </Link>
                     </td>
@@ -191,7 +191,7 @@ export default function EmployerDashboardPage() {
                 className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex items-center justify-between"
               >
                 <div>
-                  <Link to={`/jobs/${p.id}`} className="font-medium text-gray-900 hover:text-blue-600">
+                  <Link to={p.jobType === 'mentorship' ? `/mentorships/${p.id}` : `/jobs/${p.id}`} className="font-medium text-gray-900 hover:text-blue-600">
                     {p.title}
                   </Link>
                   <div className="text-sm text-gray-500 mt-1">
@@ -203,7 +203,7 @@ export default function EmployerDashboardPage() {
                 </div>
                 <div className="flex gap-2">
                   <Link
-                    to={`/jobs/${p.id}/edit`}
+                    to={p.jobType === 'mentorship' ? `/mentorships/${p.id}/edit` : `/jobs/${p.id}/edit`}
                     className="text-sm text-blue-600 hover:text-blue-800"
                   >
                     Edit

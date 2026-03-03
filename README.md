@@ -66,6 +66,7 @@ Open http://localhost:5173 in your browser.
 - **Role Selection**: Choose Student or Employer on the home page
 - **Student Profiles**: Create/edit profile with bio, skills, links (LinkedIn, GitHub, portfolio)
 - **Job Postings**: Employers can create postings with custom application questions
+- **Mentorships**: Employers can post mentorship opportunities students can apply to (separate endpoint with similar functionality)
 - **Search & Filter**: Filter jobs by type, location, industry; search students by skills
 - **Save for Later**: Students can save job postings to their dashboard
 - **Analytics Dashboard**: View counts for student profiles and job postings

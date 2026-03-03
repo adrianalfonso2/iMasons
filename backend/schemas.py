@@ -161,6 +161,57 @@ class JobPostingCreate(BaseModel):
     status: str = "active"      # replaces isActive; values: active | closed | archived
     customQuestions: list[CustomQuestionCreate] = []
 
+# --- Mentorship Schemas ---
+
+class MentorshipCreate(BaseModel):
+    employerId: int
+    title: str
+    description: str
+    location: str = ""
+    industry: str = ""
+    status: str = "active"      # active | closed | archived
+    customQuestions: list[CustomQuestionCreate] = []
+
+class MentorshipUpdate(BaseModel):
+    title: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional[str] = None
+    jobType: Optional[str] = None  # must be 'mentorship' if provided
+    industry: Optional[str] = None
+    status: Optional[str] = None   # values: active | closed | archived
+    isActive: Optional[int] = None  # legacy support
+
+class MentorshipResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    employerId: int
+    title: str
+    description: str
+    location: str
+    jobType: str
+    industry: str
+    isActive: int
+    status: str
+    createdAt: Optional[str] = None
+    updatedAt: Optional[str] = None
+    customQuestions: list[CustomQuestionResponse] = []
+
+class MentorshipListResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    employerId: int
+    title: str
+    description: str
+    location: str
+    jobType: str
+    industry: str
+    isActive: int
+    status: str
+    createdAt: Optional[str] = None
+    updatedAt: Optional[str] = None
+
 
 class JobPostingUpdate(BaseModel):
     title: Optional[str] = None

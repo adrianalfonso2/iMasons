@@ -7,15 +7,13 @@ const typeColors = {
   mentorship: 'bg-purple-100 text-purple-800',
 };
 
-export default function JobCard({ job, showSave, isSaved, onSave }) {
-  const linkPath = job.jobType === 'mentorship' ? `/mentorships/${job.id}` : `/jobs/${job.id}`;
-
+export default function MentorshipCard({ job, showSave, isSaved, onSave }) {
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <Link
-            to={linkPath}
+            to={`/mentorships/${job.id}`}
             className="font-semibold text-gray-900 hover:text-blue-600"
           >
             {job.title}

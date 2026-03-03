@@ -12,6 +12,9 @@ import StudentListPage from './pages/StudentListPage';
 import JobListPage from './pages/JobListPage';
 import JobDetailPage from './pages/JobDetailPage';
 import JobCreatePage from './pages/JobCreatePage';
+import MentorshipListPage from './pages/MentorshipListPage';
+import MentorshipDetailPage from './pages/MentorshipDetailPage';
+import MentorshipCreatePage from './pages/MentorshipCreatePage';
 import EmployerDashboardPage from './pages/EmployerDashboardPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 
@@ -39,6 +42,11 @@ function App() {
               <Route path="/jobs/new" element={<ProtectedRoute><JobCreatePage /></ProtectedRoute>} />
               <Route path="/jobs/:id" element={<ProtectedRoute><JobDetailPage /></ProtectedRoute>} />
               <Route path="/jobs/:id/edit" element={<ProtectedRoute><JobCreatePage /></ProtectedRoute>} />
+
+              <Route path="/mentorships" element={<ProtectedRoute><MentorshipListPage /></ProtectedRoute>} />
+              <Route path="/mentorships/new" element={<ProtectedRoute><MentorshipCreatePage /></ProtectedRoute>} />
+              <Route path="/mentorships/:id" element={<ProtectedRoute><MentorshipDetailPage /></ProtectedRoute>} />
+              <Route path="/mentorships/:id/edit" element={<ProtectedRoute><MentorshipCreatePage /></ProtectedRoute>} />
               <Route path="/employer/dashboard" element={<ProtectedRoute><EmployerDashboardPage /></ProtectedRoute>} />
               <Route path="/employer/dashboard/:id" element={<ProtectedRoute><EmployerDashboardPage /></ProtectedRoute>} />
 
