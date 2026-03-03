@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRole } from '../context/RoleContext';
 import { api } from '../api';
+import ImasonsLogo from '../components/ImasonsLogo';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -18,7 +19,6 @@ export default function LoginPage() {
       const res = await api.post('/auth/login', form);
       setAuth(res);
 
-      // Navigate to the correct dashboard based on role
       if (res.role === 'admin') {
         navigate('/admin/dashboard');
       } else if (res.role === 'student') {
@@ -34,53 +34,70 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[70vh]">
+    <div className="-mx-4 -my-8 px-4 py-12 min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center">
       <div className="w-full max-w-md">
-        <h1 className="text-3xl font-bold text-gray-900 text-center mb-2">Sign In</h1>
-        <p className="text-gray-500 text-center mb-8">Welcome back to the iMasons Job Board</p>
+        {/* Logo */}
+        <div className="flex justify-center mb-8">
+          <ImasonsLogo className="h-12" />
+        </div>
 
-        {error && (
-          <div className="bg-red-50 text-red-700 p-3 rounded-lg mb-4 text-sm">{error}</div>
-        )}
+        {/* Card */}
+        <div className="bg-white rounded-2xl shadow-lg overflow-hidden w-full">
+          {/* Cyan accent top border */}
+          <div className="h-1 bg-brand-cyan" />
 
-        <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input
-              type="email"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              required
-              autoComplete="email"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="you@example.com"
-            />
+          <div className="p-8">
+            <h1 className="text-2xl font-bold text-brand-purple-dark mb-1">Welcome back</h1>
+            <p className="text-brand-teal text-sm mb-6">Sign in to your iMasons account</p>
+
+            {error && (
+              <div className="bg-red-50 text-red-700 p-3 rounded-lg mb-4 text-sm">{error}</div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-brand-teal mb-1">Email</label>
+                <input
+                  type="email"
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  required
+                  autoComplete="email"
+                  className="w-full border border-gray-200 rounded-xl px-3 py-2.5 focus:ring-2 focus:ring-brand-purple focus:border-brand-purple outline-none transition-colors"
+                  placeholder="you@example.com"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-brand-teal mb-1">Password</label>
+                <input
+                  type="password"
+                  value={form.password}
+                  onChange={(e) => setForm({ ...form, password: e.target.value })}
+                  required
+                  autoComplete="current-password"
+                  className="w-full border border-gray-200 rounded-xl px-3 py-2.5 focus:ring-2 focus:ring-brand-purple focus:border-brand-purple outline-none transition-colors"
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-brand-purple hover:bg-brand-purple-dark text-white font-semibold py-2.5 rounded-xl transition-colors disabled:opacity-50 mt-2"
+              >
+                {loading ? 'Signing in...' : 'Sign In'}
+              </button>
+            </form>
+
+            <p className="text-center text-sm text-gray-500 mt-6">
+              Don't have an account?{' '}
+              <Link to="/register" className="text-brand-purple font-semibold hover:text-brand-purple-dark transition-colors">
+                Register
+              </Link>
+            </p>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-            <input
-              type="password"
-              value={form.password}
-              onChange={(e) => setForm({ ...form, password: e.target.value })}
-              required
-              autoComplete="current-password"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            />
-          </div>
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 disabled:opacity-50 font-medium"
-          >
-            {loading ? 'Signing in...' : 'Sign In'}
-          </button>
-        </form>
+        </div>
 
-        <p className="text-center text-sm text-gray-500 mt-6">
-          Don't have an account?{' '}
-          <Link to="/register" className="text-blue-600 hover:text-blue-800 font-medium">
-            Register
-          </Link>
+        <p className="text-brand-teal/70 text-xs text-center mt-4">
+          Secure access for iMasons members only
         </p>
       </div>
     </div>

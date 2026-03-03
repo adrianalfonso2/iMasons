@@ -1,1 +1,32 @@
 @import "tailwindcss";
+
+/*
+ * iMasons Foundation Brand Design Tokens
+ * Injected into Tailwind v4 via @theme — these become first-class utility classes:
+ *   bg-brand-purple, text-brand-teal, border-brand-cyan, etc.
+ */
+@theme {
+  /* Primary — deep purple/plum (logo mark, CTAs, headings) */
+  --color-brand-purple:      #5D0E67;
+
+  /* Dark variant — used for hero backgrounds and dark panels */
+  --color-brand-purple-dark: #4A0A4E;
+
+  /* Secondary — dark slate teal ("Foundation" wordmark, sub-headings) */
+  --color-brand-teal:        #1E5C6C;
+
+  /* Accent — electric cyan (logo bottom dash, active states, highlights) */
+  --color-brand-cyan:        #50ECEC;
+
+  /* Page background — very light purple-tinted white */
+  --color-brand-bg:          #F8F5FA;
+
+  /* Typography — Poppins loaded via Google Fonts in index.html */
+  --font-family-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Apply font and background globally */
+body {
+  font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  background-color: #F8F5FA;
+}
