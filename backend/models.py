@@ -46,6 +46,7 @@ class Student(Base):
     isActive = Column(Integer, default=1)
     createdAt = Column(Text, server_default=NOW)
     updatedAt = Column(Text, server_default=NOW)
+    applications = relationship("Application", cascade="all, delete-orphan")
 
     savedPostings = relationship("SavedPosting", back_populates="student", cascade="all, delete-orphan")
 
@@ -82,6 +83,7 @@ class JobPosting(Base):
     status = Column(Text, default="active")
     createdAt = Column(Text, server_default=NOW)
     updatedAt = Column(Text, server_default=NOW)
+    applications = relationship("Application", cascade="all, delete-orphan")
 
     __table_args__ = (
         CheckConstraint("jobType IN ('internship', 'full-time', 'part-time', 'mentorship')"),
@@ -118,6 +120,26 @@ class SavedPosting(Base):
 
     student = relationship("Student", back_populates="savedPostings")
     jobPosting = relationship("JobPosting", back_populates="savedPostings")
+
+
+class Application(Base):
+    __tablename__ = "applications"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    studentId = Column(Integer, ForeignKey("students.id", ondelete="CASCADE"), nullable=False)
+    jobPostingId = Column(Integer, ForeignKey("job_postings.id", ondelete="CASCADE"), nullable=False)
+
+    status = Column(Text, default="submitted", nullable=False)
+
+    answersJson = Column(Text, default="") 
+
+    createdAt = Column(Text, server_default=NOW)
+    updatedAt = Column(Text, server_default=NOW)
+
+    __table_args__ = (
+        UniqueConstraint("studentId", "jobPostingId"),
+        CheckConstraint("status IN ('submitted','under_review','rejected','accepted','withdrawn')"),
+    )
 
 
 class AnalyticsEvent(Base):
