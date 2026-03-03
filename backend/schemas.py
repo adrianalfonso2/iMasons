@@ -1,5 +1,5 @@
 from pydantic import BaseModel, ConfigDict
-from typing import Optional
+from typing import Optional, Dict
 
 
 # --- Auth Schemas ---
@@ -229,6 +229,30 @@ class SavedPostingWithJobResponse(BaseModel):
     jobPostingId: int
     savedAt: Optional[str] = None
     jobPosting: JobPostingListResponse
+
+
+# --- Application Schemas ---
+
+class ApplicationCreate(BaseModel):
+    studentId: int
+    jobPostingId: int
+    answers: Optional[Dict[str, str]] = None 
+
+
+class ApplicationStatusUpdate(BaseModel):
+    status: str  
+
+
+class ApplicationResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    studentId: int
+    jobPostingId: int
+    status: str
+    answersJson: str
+    createdAt: Optional[str] = None
+    updatedAt: Optional[str] = None
 
 
 # --- Analytics Schemas ---
