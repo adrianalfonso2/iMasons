@@ -84,9 +84,15 @@ export default function JobDetailPage() {
           </div>
         </div>
 
-        <div className="flex gap-4 text-sm text-gray-500 mb-6">
+        <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-6">
           {job.location && <span>📍 {job.location}</span>}
           {job.industry && <span>🏭 {job.industry}</span>}
+          {job.createdAt && (
+            <span className="flex items-center gap-1">
+              <img src="/images/calendar-icon.png" alt="Posted date" className="h-4 w-4 object-contain" />
+              {new Date(job.createdAt).toLocaleDateString()}
+            </span>
+          )}
         </div>
 
         <div className="prose max-w-none mb-6">
@@ -122,15 +128,17 @@ export default function JobDetailPage() {
           <div className="mt-6 flex gap-3">
             <button
               onClick={handleSave}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 font-medium"
+              className="flex items-center gap-2 bg-brand-purple text-white px-6 py-2 rounded-lg hover:bg-brand-purple-dark transition-colors font-medium"
             >
+              <img src="/images/saved-icon.png" alt="" className="h-5 w-5 object-contain" aria-hidden="true" />
               Save for Later
             </button>
             {employer?.contactEmail && job.status === 'active' && (
               <button
                 onClick={handleApplyEmail}
-                className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 font-medium"
+                className="flex items-center gap-2 bg-brand-teal text-white px-6 py-2 rounded-lg hover:opacity-90 transition-opacity font-medium"
               >
+                <img src="/images/messages-icon.png" alt="" className="h-5 w-5 object-contain" aria-hidden="true" />
                 Apply via Email
               </button>
             )}

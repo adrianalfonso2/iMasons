@@ -40,7 +40,10 @@ export default function StudentListPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Browse Students</h1>
+      <h1 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+        <img src="/images/group-icon.png" alt="Student directory" className="h-7 w-7 object-contain" />
+        Browse Students
+      </h1>
       <div className="flex flex-col md:flex-row gap-6">
         <div className="w-full md:w-64 shrink-0">
           <FilterSidebar filters={filters} onChange={setFilters} config={filterConfig} />

@@ -199,8 +199,9 @@ export default function StudentDashboardPage() {
         </div>
         <Link
           to={`/student/profile/${studentId}`}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+          className="flex items-center gap-2 bg-brand-purple text-white px-4 py-2 rounded-lg hover:bg-brand-purple-dark transition-colors"
         >
+          <img src="/images/graduation-cap-icon.png" alt="" className="h-5 w-5 object-contain" aria-hidden="true" />
           Edit Profile
         </Link>
       </div>
@@ -230,7 +231,10 @@ export default function StudentDashboardPage() {
         </div>
       )}
 
-      <h2 className="text-xl font-semibold text-gray-900 mb-4">Saved Jobs</h2>
+      <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <img src="/images/saved-icon.png" alt="Saved jobs" className="h-6 w-6 object-contain" />
+        Saved Jobs
+      </h2>
       {savedLoading ? (
         <p className="text-gray-500">Loading saved jobs...</p>
       ) : saved?.length > 0 ? (

@@ -81,7 +81,10 @@ export default function JobListPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Browse Jobs</h1>
+      <h1 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+        <img src="/images/search-icon.png" alt="Job search" className="h-7 w-7 object-contain" />
+        Browse Jobs
+      </h1>
       <div className="flex flex-col md:flex-row gap-6">
         <div className="w-full md:w-64 shrink-0">
           <FilterSidebar filters={filters} onChange={setFilters} config={filterConfig} />

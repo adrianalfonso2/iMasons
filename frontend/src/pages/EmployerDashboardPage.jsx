@@ -125,13 +125,16 @@ export default function EmployerDashboardPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">{employer.companyName}</h1>
-          <p className="text-gray-500">{employer.contactEmail}</p>
+        <div className="flex items-center gap-3">
+          <img src="/images/desktop-icon.png" alt="Employer dashboard" className="h-8 w-8 object-contain" />
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">{employer.companyName}</h1>
+            <p className="text-gray-500">{employer.contactEmail}</p>
+          </div>
         </div>
         <Link
           to="/jobs/new"
-          className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+          className="bg-brand-purple text-white px-4 py-2 rounded-lg hover:bg-brand-purple-dark transition-colors"
         >
           + New Posting
         </Link>
@@ -174,7 +177,10 @@ export default function EmployerDashboardPage() {
         </div>
       )}
 
-      <h2 className="text-xl font-semibold text-gray-900 mb-4">My Postings</h2>
+      <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <img src="/images/handshake-icon.png" alt="Job matches" className="h-6 w-6 object-contain" />
+        My Postings
+      </h2>
       {postingsLoading ? (
         <p className="text-gray-500">Loading postings...</p>
       ) : postings?.length > 0 ? (
