@@ -5,6 +5,8 @@ from routers import students, employers, jobPostings, savedPostings, analytics, 
 from routers import auth as auth_router
 from routers import admin as admin_router
 
+print("LOADED MAIN.PY FROM:", __file__)
+
 # Create all tables that don't exist yet (safe to call repeatedly)
 Base.metadata.create_all(bind=engine)
 
