@@ -6,14 +6,11 @@ from database import get_db
 from models import Application, Student, JobPosting
 from schemas import ApplicationCreate, ApplicationResponse, ApplicationStatusUpdate
 
-print("LOADED APPLICATIONS ROUTER")
-
 router = APIRouter(prefix="/api/applications", tags=["applications"])
 
 
 @router.post("", response_model=ApplicationResponse)
 def create_application(payload: ApplicationCreate, db: Session = Depends(get_db)):
-    # Validate student + posting exist
     student = db.query(Student).filter(Student.id == payload.studentId, Student.isActive == 1).first()
     if not student:
         raise HTTPException(status_code=404, detail="Student not found or inactive")
@@ -22,7 +19,6 @@ def create_application(payload: ApplicationCreate, db: Session = Depends(get_db)
     if not posting or posting.status != "active":
         raise HTTPException(status_code=404, detail="Job posting not found or not active")
 
-    # Prevent duplicate applications
     existing = db.query(Application).filter(
         Application.studentId == payload.studentId,
         Application.jobPostingId == payload.jobPostingId
@@ -30,13 +26,11 @@ def create_application(payload: ApplicationCreate, db: Session = Depends(get_db)
     if existing:
         raise HTTPException(status_code=409, detail="Already applied to this posting")
 
-    answers_json = json.dumps(payload.answers or {})
-
     app_row = Application(
         studentId=payload.studentId,
         jobPostingId=payload.jobPostingId,
         status="submitted",
-        answersJson=answers_json
+        answersJson=json.dumps(payload.answers or {})
     )
     db.add(app_row)
     db.commit()
