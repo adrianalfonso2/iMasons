@@ -6,6 +6,8 @@ from database import get_db
 from models import Application, Student, JobPosting
 from schemas import ApplicationCreate, ApplicationResponse, ApplicationStatusUpdate
 
+print("LOADED APPLICATIONS ROUTER")
+
 router = APIRouter(prefix="/api/applications", tags=["applications"])
 
 
