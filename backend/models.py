@@ -140,6 +140,9 @@ class Application(Base):
         CheckConstraint("status IN ('submitted','under_review','rejected','accepted','withdrawn')"),
     )
 
+    student = relationship("Student", back_populates="applications")
+    jobPosting = relationship("JobPosting", back_populates="applications")
+
 
 class AnalyticsEvent(Base):
     __tablename__ = "analytics_events"
