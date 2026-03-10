@@ -46,7 +46,7 @@ class Student(Base):
     isActive = Column(Integer, default=1)
     createdAt = Column(Text, server_default=NOW)
     updatedAt = Column(Text, server_default=NOW)
-    applications = relationship("Application", cascade="all, delete-orphan")
+    applications = relationship("Application", back_populates="student", cascade="all, delete-orphan")
 
     savedPostings = relationship("SavedPosting", back_populates="student", cascade="all, delete-orphan")
 
