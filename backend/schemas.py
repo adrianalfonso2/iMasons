@@ -236,11 +236,11 @@ class SavedPostingWithJobResponse(BaseModel):
 class ApplicationCreate(BaseModel):
     studentId: int
     jobPostingId: int
-    answers: Optional[Dict[str, str]] = None 
+    answers: Optional[dict[str, str]] = None
 
 
 class ApplicationStatusUpdate(BaseModel):
-    status: str  
+    status: str
 
 
 class ApplicationResponse(BaseModel):
