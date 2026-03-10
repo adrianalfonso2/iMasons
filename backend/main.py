@@ -38,6 +38,7 @@ app.include_router(auth_router.router)
 # Admin moderation router
 app.include_router(admin_router.router)
 
+print("ROUTES:", [r.path for r in app.routes])
 
 @app.get("/api/health")
 def health_check():
