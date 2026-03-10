@@ -130,8 +130,7 @@ class Application(Base):
     jobPostingId = Column(Integer, ForeignKey("job_postings.id", ondelete="CASCADE"), nullable=False)
 
     status = Column(Text, default="submitted", nullable=False)
-
-    answersJson = Column(Text, default="") 
+    answersJson = Column(Text, default="")
 
     createdAt = Column(Text, server_default=NOW)
     updatedAt = Column(Text, server_default=NOW)
