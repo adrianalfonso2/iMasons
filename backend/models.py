@@ -83,7 +83,7 @@ class JobPosting(Base):
     status = Column(Text, default="active")
     createdAt = Column(Text, server_default=NOW)
     updatedAt = Column(Text, server_default=NOW)
-    applications = relationship("Application", cascade="all, delete-orphan")
+    applications = relationship("Application", back_populates="jobPosting", cascade="all, delete-orphan")
 
     __table_args__ = (
         CheckConstraint("jobType IN ('internship', 'full-time', 'part-time', 'mentorship')"),
